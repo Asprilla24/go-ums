@@ -36,3 +36,28 @@ func (c AppUsers) GetUser(id string) revel.Result {
 
 	return c.RenderJSON(response)
 }
+
+func (c AppUsers) CreateUser() revel.Result {
+	response := Response{}
+
+	post := models.AppUsers{}
+
+	err := c.Params.BindJSON(&post)
+	if err != nil {
+		c.Response.Status = 403
+		response.Error = err.Error()
+
+		return c.RenderJSON(response)
+	}
+
+	result := DB.Create(&post)
+	if result.Error != nil {
+		c.Response.Status = 500
+		response.Error = result.Error.Error()
+	} else {
+		c.Response.Status = 201
+		response.Result = "Success"
+	}
+
+	return c.RenderJSON(response)
+}

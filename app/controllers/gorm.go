@@ -17,6 +17,8 @@ func InitDB() {
 	}
 
 	db.DB()
+	db.DropTableIfExists(&models.AppUsers{})
 	db.AutoMigrate(&models.AppUsers{})
+
 	DB = db
 }

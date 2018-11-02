@@ -1,4 +1,5 @@
 module:testrunner
 
 GET     /api/users      AppUsers.GetUsers
-GET     /api/user/:id  AppUsers.GetUser
+GET     /api/user/:id   AppUsers.GetUser
+POST    /api/user       AppUsers.CreateUser
